@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_app/recipe.dart';
-import 'package:flutter_app/recipeDatabase.dart';
+import 'package:flutter_app/recipeBox.dart';
 
 class FavoriteChangeNotifier with ChangeNotifier {
   Recipe recipe;
@@ -13,7 +13,7 @@ class FavoriteChangeNotifier with ChangeNotifier {
 
   set isFavorited(bool isFavorited) {
     recipe.isFavorite = isFavorited;
-    RecipeDataBase.instance.updateRecipe(recipe);
+    RecipeBox.box.put(recipe.key(), recipe);
     notifyListeners();
   }
 }
