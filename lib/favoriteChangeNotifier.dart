@@ -1,17 +1,19 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_app/recipe.dart';
+import 'package:flutter_app/recipeDatabase.dart';
 
 class FavoriteChangeNotifier with ChangeNotifier {
-  bool _isFavorited;
-  final int _favoriteCount;
+  Recipe recipe;
 
-  FavoriteChangeNotifier(this._isFavorited, this._favoriteCount);
+  FavoriteChangeNotifier(this.recipe);
 
-  bool get isFavorited => _isFavorited;
+  bool get isFavorited => recipe.isFavorite;
 
-  int get favoriteCount => _favoriteCount + (_isFavorited ? 1 : 0);
+  int get favoriteCount => recipe.favoriteCount + (recipe.isFavorite ? 1 : 0);
 
   set isFavorited(bool isFavorited) {
-    _isFavorited = isFavorited;
+    recipe.isFavorite = isFavorited;
+    RecipeDataBase.instance.updateRecipe(recipe);
     notifyListeners();
   }
 }

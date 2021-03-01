@@ -24,6 +24,8 @@ dependencies:
   provider: ^4.3.3
   transparent_image: ^1.0.0
   cached_network_image: ^2.5.0
+  sqflite: any
+  path: any
   flutter:
     sdk: flutter
 
