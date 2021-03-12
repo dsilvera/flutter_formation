@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/recipeBox.dart';
 import 'package:flutter_app/recipeListScreen.dart';
 import 'package:flutter_app/recipeScreen.dart';
+import 'package:flutter_app/recipeformscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,6 +41,8 @@ class RouteGenerator {
               );
             }
         );
+      case '/newRecipe':
+        return MaterialPageRoute(builder: (context) => RecipeFormScreen());
       default:
         return MaterialPageRoute(
             builder: (context) => Scaffold(
