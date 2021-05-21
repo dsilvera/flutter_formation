@@ -47,7 +47,7 @@ class _RecipeFormScreenState extends State<RecipeFormScreen> {
                           borderRadius:
                               BorderRadius.all(Radius.circular(20.0)))),
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value == null || value.isEmpty) {
                       return 'Please enter a title';
                     }
                     return null;
@@ -68,7 +68,7 @@ class _RecipeFormScreenState extends State<RecipeFormScreen> {
                   minLines: 3,
                   maxLines: 5,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value == null || value.isEmpty) {
                       return 'Please enter a description';
                     }
                     return null;
@@ -86,7 +86,7 @@ class _RecipeFormScreenState extends State<RecipeFormScreen> {
                           borderRadius:
                               BorderRadius.all(Radius.circular(20.0)))),
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value == null || value.isEmpty) {
                       return 'Please enter an username';
                     }
                     return null;
@@ -97,7 +97,7 @@ class _RecipeFormScreenState extends State<RecipeFormScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    if (formKey.currentState.validate()) {
+                    if (formKey.currentState?.validate() == true) {
                       Recipe recipe = Recipe(
                           titleController.value.text,
                           userController.value.text,
@@ -106,7 +106,7 @@ class _RecipeFormScreenState extends State<RecipeFormScreen> {
                           false,
                           new Random().nextInt(100));
 
-                      RecipeBox.box.put(recipe.key(), recipe);
+                      RecipeBox.box?.put(recipe.key(), recipe);
                       Navigator.pop(context);
                     }
                   },

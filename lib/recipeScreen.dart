@@ -6,7 +6,7 @@ import 'favoriteWidget.dart';
 import 'recipe.dart';
 
 class RecipeScreen extends StatelessWidget {
-  const RecipeScreen({Key key, @required this.recipe}) : super(key: key);
+  RecipeScreen(this.recipe);
   final Recipe recipe;
 
   @override

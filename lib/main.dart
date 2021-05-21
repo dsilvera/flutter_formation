@@ -4,6 +4,8 @@ import 'package:flutter_app/recipeListScreen.dart';
 import 'package:flutter_app/recipeScreen.dart';
 import 'package:flutter_app/recipeformscreen.dart';
 
+import 'recipe.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await RecipeBox.init();
@@ -31,27 +33,36 @@ class RouteGenerator {
       case '/' :
         return MaterialPageRoute(builder: (context) => RecipeListScreen());
       case '/recipe':
-        return PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation)=> RecipeScreen(recipe: settings.arguments),
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              animation = CurvedAnimation(curve: Curves.ease, parent: animation);
-              return FadeTransition(
-                opacity:animation,
-                child: child,
-              );
-            }
-        );
+        var arguments = settings.arguments;
+        if (arguments != null) {
+          return PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) => RecipeScreen(arguments as Recipe),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                animation = CurvedAnimation(curve: Curves.ease, parent: animation);
+                return FadeTransition(
+                  opacity: animation,
+                  child: child,
+                );
+              }
+          );
+        } else {
+          return pageNotFound();
+        }
       case '/newRecipe':
         return MaterialPageRoute(builder: (context) => RecipeFormScreen());
       default:
-        return MaterialPageRoute(
-            builder: (context) => Scaffold(
-              appBar: AppBar(title:Text("Error"), centerTitle: true),
-              body: Center(
-                child: Text("Page not found"),
-              )
-            )
-        );
+        return pageNotFound();
     }
+  }
+
+  static MaterialPageRoute pageNotFound() {
+    return MaterialPageRoute(
+        builder: (context) => Scaffold(
+            appBar: AppBar(title:Text("Error"), centerTitle: true),
+            body: Center(
+              child: Text("Page not found"),
+            )
+        )
+    );
   }
 }

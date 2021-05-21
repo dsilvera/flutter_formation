@@ -8,7 +8,7 @@ class FavoriteIconWidget extends StatefulWidget {
 }
 
 class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
-  bool _isFavorited;
+  bool _isFavorited = false;
 
   void _toggleFavorite(FavoriteChangeNotifier _notifier){
     setState(() {

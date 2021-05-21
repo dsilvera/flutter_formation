@@ -13,7 +13,7 @@ class FavoriteChangeNotifier with ChangeNotifier {
 
   set isFavorited(bool isFavorited) {
     recipe.isFavorite = isFavorited;
-    RecipeBox.box.put(recipe.key(), recipe);
+    RecipeBox.box?.put(recipe.key(), recipe);
     notifyListeners();
   }
 }
